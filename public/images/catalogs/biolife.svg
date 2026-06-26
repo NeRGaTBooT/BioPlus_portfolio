@@ -1,0 +1,5 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 160 64" role="img" aria-label="Biolife Italiana">
+  <rect width="160" height="64" rx="8" fill="#f9fafb" stroke="#e5e8eb"/>
+  <text x="80" y="28" text-anchor="middle" fill="#191f28" font-family="system-ui,sans-serif" font-size="11" font-weight="600">Biolife Italiana</text>
+  <text x="80" y="46" text-anchor="middle" fill="#6b7684" font-family="system-ui,sans-serif" font-size="9">Каталог</text>
+</svg>

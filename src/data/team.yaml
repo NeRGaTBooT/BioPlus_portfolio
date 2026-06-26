@@ -1,0 +1,47 @@
+- id: valery-malyuta
+  name: Валерий Малюта
+  role: Руководитель
+  department: management
+  photo: /images/team/valery-malyuta.svg
+
+- id: aleksandra-yankova
+  name: Александра Янкова
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/aleksandra-yankova.svg
+
+- id: nina-kontsevenko
+  name: Нина Концевенко
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/nina-kontsevenko.svg
+
+- id: maria-goruleva
+  name: Мария Горулёва
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/maria-goruleva.svg
+
+- id: anna-piskun
+  name: Анна Пискун
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/anna-piskun.svg
+
+- id: stanislav-sparchenkov
+  name: Станислав Спарченков
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/stanislav-sparchenkov.svg
+
+- id: marina-kaganovich
+  name: Марина Каганович
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/marina-kaganovich.svg
+
+- id: dmitry-klyuev
+  name: Дмитрий Клюев
+  role: Менеджер по продажам
+  department: sales
+  photo: /images/team/dmitry-klyuev.svg

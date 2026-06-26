@@ -1,0 +1,39 @@
+- id: loip
+  brand: "АО «ЛОИП»"
+  logo: /images/catalogs/loip.svg
+  file: /catalogs/loip.pdf
+
+- id: minimed
+  brand: МиниМед
+  logo: /images/catalogs/minimed.svg
+  file: /catalogs/minimed.pdf
+
+- id: dlab
+  brand: DLAB
+  logo: /images/catalogs/dlab.svg
+  file: /catalogs/dlab.pdf
+
+- id: obolensk-media
+  brand: "Питательные среды (Оболенск)"
+  logo: /images/catalogs/obolensk.svg
+  file: /catalogs/obolensk-media.pdf
+
+- id: khimlaborpribor
+  brand: "ПАО «Химлаборприбор»"
+  logo: /images/catalogs/klp.svg
+  file: /catalogs/khimlaborpribor.pdf
+
+- id: carlo-erba
+  brand: Carlo Erba
+  logo: /images/catalogs/carlo-erba.svg
+  file: /catalogs/carlo-erba.pdf
+
+- id: brand
+  brand: BRAND
+  logo: /images/catalogs/brand.svg
+  file: /catalogs/brand.pdf
+
+- id: biolife
+  brand: Biolife Italiana
+  logo: /images/catalogs/biolife.svg
+  file: /catalogs/biolife.pdf

@@ -1,0 +1,48 @@
+- id: acetonitrile-hplc
+  name: "Ацетонитрил для ВЭЖХ, gradient grade"
+  category: chromatography
+  subcategory: solvents
+  manufacturer: Carlo Erba
+  inStock: true
+  popular: true
+  description: "Растворитель для ВЭЖХ, чистота ≥ 99,9%, 1 л."
+
+- id: methanol-hplc
+  name: "Метанол для ВЭЖХ, gradient grade"
+  category: chromatography
+  subcategory: solvents
+  manufacturer: PanReac
+  inStock: true
+  description: "Метанол для жидкостной хроматографии, 1 л."
+
+- id: column-c18
+  name: "Колонка ВЭЖХ C18, 250×4,6 мм, 5 мкм"
+  category: chromatography
+  subcategory: columns
+  manufacturer: Thermo Fisher
+  inStock: true
+  description: "Обратно-фазная колонка для анализа органических соединений."
+
+- id: column-silica
+  name: "Колонка для колоночной хроматографии, силикагель"
+  category: chromatography
+  subcategory: columns
+  manufacturer: Merck
+  inStock: true
+  description: "Стеклянная колонка с силикагелем, 40×300 мм."
+
+- id: std-mix-phenols
+  name: "Стандартная смесь фенолов"
+  category: chromatography
+  subcategory: standards
+  manufacturer: Supelco
+  inStock: false
+  description: "Набор стандартов для калибровки хроматографа, 1 мл."
+
+- id: helium-gc
+  name: "Гелий газообразный, 99,999%, баллон 40 л"
+  category: chromatography
+  subcategory: solvents
+  manufacturer: "ООО «Ланхит»"
+  inStock: true
+  description: "Газ-носитель для газовой хроматографии."

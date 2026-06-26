@@ -1,0 +1,47 @@
+- name: МиниМакс
+  logo: /images/partners/minimax.png
+  url: https://minimax.ru
+
+- name: BGB Analytik AG
+  logo: /images/partners/bgb.png
+  url: https://bgs-info.com
+
+- name: "ПАО «Химлаборприбор»"
+  logo: /images/partners/klp.png
+  url: https://klp.ru
+
+- name: Graso Biotech
+  logo: /images/partners/graso.png
+  url: https://grasobiotech.pl
+
+- name: "ФБУН ГНЦ ПМБ"
+  logo: /images/partners/obolensk.png
+  url: https://obolensk.ru
+
+- name: Carlo Erba Reagents
+  logo: /images/partners/carlo-erba.png
+  url: https://carloerbareagents.com
+
+- name: "ОКБ Веста"
+  logo: /images/partners/okb-vesta.png
+  url: https://okbvesta.ru
+
+- name: Топаналит
+  logo: /images/partners/topanalyt.png
+  url: https://topanalyt.ru
+
+- name: NV-LAB
+  logo: /images/partners/nv-lab.png
+  url: https://nv-lab.ru
+
+- name: A&D
+  logo: /images/partners/and.png
+  url: https://www.aandd.jp
+
+- name: Biolife Italiana
+  logo: /images/partners/biolife.png
+  url: https://www.biolifeitaliana.it
+
+- name: VITLAB
+  logo: /images/partners/vitlab.png
+  url: https://www.vitlab.com

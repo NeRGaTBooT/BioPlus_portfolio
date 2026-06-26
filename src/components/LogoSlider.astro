@@ -1,0 +1,197 @@
+---
+import { withBase } from '../utils/paths';
+
+interface LogoItem {
+  name: string;
+  logo: string;
+  url?: string;
+}
+
+interface Props {
+  items: LogoItem[];
+  title: string;
+  linkHref?: string;
+  linkLabel?: string;
+}
+
+const { items, title, linkHref, linkLabel } = Astro.props;
+
+const navButtonClass =
+  'inline-flex h-9 w-9 shrink-0 items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border)] bg-white text-[var(--color-muted)] transition-colors hover:border-[var(--color-accent)] hover:text-[var(--color-accent)] disabled:pointer-events-none disabled:opacity-40';
+---
+
+<section class="logo-slider" data-logo-slider>
+  <div class="mb-4 flex items-end justify-between gap-4 sm:mb-6">
+    <h2 class="text-lg font-semibold text-[var(--color-foreground)]">{title}</h2>
+    {
+      linkHref && linkLabel && (
+        <a
+          href={withBase(linkHref)}
+          class="shrink-0 text-sm font-medium text-[var(--color-accent)] no-underline hover:text-[var(--color-accent-hover)]"
+        >
+          {linkLabel} →
+        </a>
+      )
+    }
+  </div>
+
+  <div class="flex items-center gap-2 sm:gap-3">
+    <button
+      type="button"
+      class:list={[navButtonClass, 'logo-slider-prev']}
+      data-logo-slider-prev
+      aria-label="Прокрутить назад"
+      disabled
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7" />
+      </svg>
+    </button>
+
+    <div class="min-w-0 flex-1 overflow-hidden" data-logo-slider-viewport>
+      <div
+        class="overflow-x-auto scroll-smooth [-ms-overflow-style:none] [scrollbar-width:none] [&::-webkit-scrollbar]:hidden"
+        data-logo-slider-track
+        role="list"
+        aria-label={title}
+      >
+        <div class="flex w-max gap-4" data-logo-slider-list>
+          {
+            items.map((item) => {
+              const content = (
+                <div class="logo-slider-card flex h-20 shrink-0 items-center justify-center rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white px-4 py-3">
+                  <img
+                    src={withBase(item.logo)}
+                    alt={item.name}
+                    width="120"
+                    height="48"
+                    class="max-h-10 max-w-full object-contain"
+                    loading="lazy"
+                  />
+                </div>
+              );
+
+              return item.url ? (
+                <a
+                  href={item.url}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  class="shrink-0 no-underline hover:opacity-80"
+                  role="listitem"
+                  aria-label={item.name}
+                >
+                  {content}
+                </a>
+              ) : (
+                <div class="shrink-0" role="listitem">
+                  {content}
+                </div>
+              );
+            })
+          }
+        </div>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      class:list={[navButtonClass, 'logo-slider-next']}
+      data-logo-slider-next
+      aria-label="Прокрутить вперёд"
+    >
+      <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 5l7 7-7 7" />
+      </svg>
+    </button>
+  </div>
+</section>
+
+<style>
+  .logo-slider-card {
+    width: var(--logo-card-width, 9rem);
+  }
+</style>
+
+<script>
+  function initLogoSliders() {
+    const CARD_GAP = 16;
+    const MIN_CARD_WIDTH = 128;
+
+    document.querySelectorAll<HTMLElement>('[data-logo-slider]').forEach((slider) => {
+      if (slider.dataset.ready === 'true') return;
+
+      const viewport = slider.querySelector<HTMLElement>('[data-logo-slider-viewport]');
+      const track = slider.querySelector<HTMLElement>('[data-logo-slider-track]');
+      const list = slider.querySelector<HTMLElement>('[data-logo-slider-list]');
+      const prev = slider.querySelector<HTMLButtonElement>('[data-logo-slider-prev]');
+      const next = slider.querySelector<HTMLButtonElement>('[data-logo-slider-next]');
+
+      if (!viewport || !track || !list || !prev || !next) return;
+
+      slider.dataset.ready = 'true';
+
+      const totalCards = list.children.length;
+      let visibleCount = 1;
+      let currentPage = 0;
+      let snapTimer: number | undefined;
+
+      const getPageCount = () => Math.max(1, Math.ceil(totalCards / visibleCount));
+      const getMaxPage = () => getPageCount() - 1;
+      const getStep = () => viewport.clientWidth;
+
+      const updateControls = () => {
+        const step = getStep();
+        currentPage = step > 0 ? Math.round(track.scrollLeft / step) : 0;
+        const hasOverflow = getPageCount() > 1;
+
+        prev.disabled = currentPage <= 0;
+        next.disabled = currentPage >= getMaxPage();
+        prev.hidden = !hasOverflow;
+        next.hidden = !hasOverflow;
+      };
+
+      const goToPage = (page: number, smooth = true) => {
+        currentPage = Math.max(0, Math.min(page, getMaxPage()));
+        track.scrollTo({ left: currentPage * getStep(), behavior: smooth ? 'smooth' : 'auto' });
+        updateControls();
+      };
+
+      const snapToPage = () => {
+        const step = getStep();
+        if (step <= 0) return;
+        goToPage(Math.round(track.scrollLeft / step));
+      };
+
+      const layout = () => {
+        const available = viewport.clientWidth;
+        visibleCount = Math.max(1, Math.floor((available + CARD_GAP) / (MIN_CARD_WIDTH + CARD_GAP)));
+        const cardWidth = (available - (visibleCount - 1) * CARD_GAP) / visibleCount;
+
+        slider.style.setProperty('--logo-card-width', `${cardWidth}px`);
+        goToPage(Math.min(currentPage, getMaxPage()), false);
+      };
+
+      prev.addEventListener('click', () => goToPage(currentPage - 1));
+      next.addEventListener('click', () => goToPage(currentPage + 1));
+
+      track.addEventListener('scroll', () => {
+        updateControls();
+
+        if (snapTimer !== undefined) {
+          window.clearTimeout(snapTimer);
+        }
+
+        snapTimer = window.setTimeout(snapToPage, 120);
+      }, { passive: true });
+
+      track.addEventListener('scrollend', snapToPage);
+
+      const resizeObserver = new ResizeObserver(layout);
+      resizeObserver.observe(viewport);
+      layout();
+    });
+  }
+
+  initLogoSliders();
+  document.addEventListener('astro:page-load', initLogoSliders);
+</script>

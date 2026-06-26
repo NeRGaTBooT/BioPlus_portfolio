@@ -1,0 +1,55 @@
+- id: flask-250
+  name: "Колба мерная 250 мл, кл. 2"
+  category: glassware
+  subcategory: flasks
+  manufacturer: Vitlab
+  inStock: true
+  description: "Мерная колба из полипропилена, класс точности 2."
+
+- id: flask-1000
+  name: "Колба мерная 1000 мл, кл. 1"
+  category: glassware
+  subcategory: flasks
+  manufacturer: Simax
+  inStock: true
+  description: "Стеклянная мерная колба, класс точности 1."
+
+- id: pipette-graduated-10
+  name: "Пипетка мерная 10 мл"
+  category: glassware
+  subcategory: pipettes
+  manufacturer: BRAND
+  inStock: true
+  description: "Стеклянная градуированная пипетка, класс B."
+
+- id: pipette-pasteur
+  name: "Пипетка Пастера, 3 мл"
+  category: glassware
+  subcategory: pipettes
+  manufacturer: Kartell
+  inStock: true
+  description: "Одноразовая пластиковая пипетка Пастера, уп. 500 шт."
+
+- id: test-tube-16
+  name: "Пробирка 16×160 мм"
+  category: glassware
+  subcategory: test-tubes
+  manufacturer: Simax
+  inStock: true
+  description: "Стеклянная пробирка без горла, уп. 100 шт."
+
+- id: petri-90
+  name: "Чашка Петри 90 мм"
+  category: glassware
+  subcategory: petri-dishes
+  manufacturer: Biolife Italiana
+  inStock: true
+  description: "Одноразовая чашка Петри с крышкой, уп. 500 шт."
+
+- id: hydrometer-700
+  name: "Ареометр АОН-1, 700–800 кг/м³"
+  category: glassware
+  subcategory: hydrometers
+  manufacturer: "ПАО «Химлаборприбор»"
+  inStock: false
+  description: "Стеклянный ареометр для определения плотности."

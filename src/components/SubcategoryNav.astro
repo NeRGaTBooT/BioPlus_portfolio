@@ -1,0 +1,47 @@
+---
+import type { Category } from '../types';
+import { countProductsInSubcategory } from '../utils/products';
+import { withBase } from '../utils/paths';
+
+interface Props {
+  category: Category;
+  activeSubcategorySlug?: string;
+}
+
+const { category, activeSubcategorySlug } = Astro.props;
+---
+
+<nav aria-label="Подкатегории" class="flex flex-wrap gap-2">
+  <a
+    href={withBase(`/products/${category.slug}`)}
+    class:list={[
+      'rounded-full px-3 py-1.5 text-sm no-underline transition-colors',
+      !activeSubcategorySlug
+        ? 'bg-[var(--color-accent)] font-medium text-white'
+        : 'border border-[var(--color-border)] text-[var(--color-foreground)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]',
+    ]}
+  >
+    Все
+  </a>
+  {
+    category.subcategories.map((subcategory) => {
+      const count = countProductsInSubcategory(category.id, subcategory.id);
+      const isActive = activeSubcategorySlug === subcategory.slug;
+
+      return (
+        <a
+          href={withBase(`/products/${category.slug}/${subcategory.slug}`)}
+          class:list={[
+            'rounded-full px-3 py-1.5 text-sm no-underline transition-colors',
+            isActive
+              ? 'bg-[var(--color-accent)] font-medium text-white'
+              : 'border border-[var(--color-border)] text-[var(--color-foreground)] hover:border-[var(--color-accent)] hover:text-[var(--color-accent)]',
+          ]}
+        >
+          {subcategory.name}
+          {count > 0 && <span class="ml-1 opacity-75">({count})</span>}
+        </a>
+      );
+    })
+  }
+</nav>

@@ -1,0 +1,98 @@
+---
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import PageHeader from '../components/PageHeader.astro';
+
+import { getCatalogs } from '../utils/data';
+
+import { withBase } from '../utils/paths';
+
+
+
+const catalogs = getCatalogs();
+
+---
+
+
+
+<BaseLayout
+
+  title="Каталоги"
+
+  description="PDF-каталоги производителей лабораторной продукции."
+
+>
+
+  <PageHeader
+
+    title="Каталоги"
+
+    description="Скачайте каталоги брендов в формате PDF для ознакомления с ассортиментом."
+
+  />
+
+
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+
+      {
+
+        catalogs.map((catalog) => (
+
+          <article class="flex flex-col rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-6">
+
+            <div class="flex h-16 items-center justify-center">
+
+              <img
+
+                src={withBase(catalog.logo)}
+
+                alt={catalog.brand}
+
+                width="160"
+
+                height="64"
+
+                class="max-h-14 max-w-full object-contain"
+
+                loading="lazy"
+
+              />
+
+            </div>
+
+            <h3 class="mt-4 text-center text-sm font-semibold text-[var(--color-foreground)]">
+
+              {catalog.brand}
+
+            </h3>
+
+            <a
+
+              href={withBase(catalog.file)}
+
+              download
+
+              class="mt-4 inline-flex items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-2.5 text-sm font-medium text-[var(--color-foreground)] no-underline hover:border-[var(--color-accent)] hover:bg-[var(--color-accent-muted)] hover:text-[var(--color-accent)]"
+
+            >
+
+              Скачать каталог
+
+            </a>
+
+          </article>
+
+        ))
+
+      }
+
+    </div>
+
+  </section>
+
+</BaseLayout>
+

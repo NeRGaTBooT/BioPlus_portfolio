@@ -1,0 +1,47 @@
+- name: "ОАО «Беларускали»"
+  logo: /images/clients/belaruskali.png
+  url: https://www.belaruskali.com
+
+- name: "ОАО «Мозырский НПЗ»"
+  logo: /images/clients/mozyr-npz.png
+  url: https://www.mnpz.by
+
+- name: "Кондитерская фабрика «Коммунарка»"
+  logo: /images/clients/kommunarka.png
+  url: https://www.kommunarka.by
+
+- name: "ОАО «Савушкин продукт»"
+  logo: /images/clients/savushkin.png
+  url: https://www.savushkin.by
+
+- name: "ОАО «Спартак»"
+  logo: /images/clients/spartak.png
+  url: https://www.spartak.by
+
+- name: "Danone Беларусь"
+  logo: /images/clients/danone.png
+  url: https://www.danone.by
+
+- name: "ОАО «Беллакт»"
+  logo: /images/clients/bellakt.png
+  url: https://www.bellakt.by
+
+- name: "Брестский мясокомбинат"
+  logo: /images/clients/brest-meat.jpg
+  url: https://www.bmk.by
+
+- name: "Белорусский государственный университет"
+  logo: /images/clients/bsu.png
+  url: https://www.bsu.by
+
+- name: "ОАО «Могилёвхимволокно»"
+  logo: /images/clients/mogilevkhimvolokno.png
+  url: https://www.mogilevkhimvolokno.by
+
+- name: "УП «Минск Кристалл»"
+  logo: /images/clients/minsk-kristall.png
+  url: https://www.kristall.by
+
+- name: "РУП «Белмедпрепараты»"
+  logo: /images/clients/belmedpreparaty.png
+  url: https://www.belmedpreparaty.by

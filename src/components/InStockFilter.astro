@@ -1,0 +1,47 @@
+---
+interface Props {
+  total: number;
+  inStock: number;
+}
+
+const { total, inStock } = Astro.props;
+---
+
+<div class="flex flex-wrap items-center justify-between gap-4 rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white px-4 py-3">
+  <p class="text-sm text-[var(--color-muted)]">
+    <span id="product-count">{total}</span> {total === 1 ? 'товар' : total < 5 ? 'товара' : 'товаров'}
+    · в наличии: {inStock}
+  </p>
+  <label class="flex cursor-pointer items-center gap-2 text-sm text-[var(--color-foreground)]">
+    <input
+      type="checkbox"
+      id="in-stock-filter"
+      class="h-4 w-4 rounded border-[var(--color-border)] text-[var(--color-accent)] focus:ring-[var(--color-accent)]"
+    />
+    Только в наличии
+  </label>
+</div>
+
+<script>
+  function applyInStockFilter() {
+    const checkbox = document.getElementById('in-stock-filter') as HTMLInputElement | null;
+    const cards = document.querySelectorAll<HTMLElement>('[data-product-card]');
+    const countEl = document.getElementById('product-count');
+
+    if (!checkbox || !countEl) return;
+
+    const inStockOnly = checkbox.checked;
+    let visible = 0;
+
+    cards.forEach((card) => {
+      const inStock = card.dataset.inStock === 'true';
+      const show = !inStockOnly || inStock;
+      card.classList.toggle('hidden', !show);
+      if (show) visible += 1;
+    });
+
+    countEl.textContent = String(visible);
+  }
+
+  document.getElementById('in-stock-filter')?.addEventListener('change', applyInStockFilter);
+</script>

@@ -1,0 +1,118 @@
+---
+import Search from 'astro-pagefind/components/Search.astro';
+---
+
+<div
+  id="search-dialog"
+  class="search-dialog fixed inset-0 z-[200] hidden"
+  role="dialog"
+  aria-modal="true"
+  aria-label="Поиск по сайту"
+  hidden
+>
+  <button
+    type="button"
+    class="absolute inset-0 z-0 bg-black/50 backdrop-blur-[1px]"
+    data-search-backdrop
+    aria-label="Закрыть поиск"
+    tabindex="-1"
+  ></button>
+
+  <div class="pointer-events-none relative z-10 flex h-full items-start justify-center p-4 pt-20 sm:pt-28">
+    <div class="pointer-events-auto w-full max-w-xl rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-4 shadow-lg">
+      <div class="mb-3 flex items-center justify-between gap-3">
+        <p class="text-sm font-semibold text-[var(--color-foreground)]">Поиск по каталогу</p>
+        <button
+          type="button"
+          id="search-close"
+          class="rounded-[var(--radius-sm)] p-1.5 text-[var(--color-muted)] hover:bg-[var(--color-surface)] hover:text-[var(--color-foreground)]"
+          aria-label="Закрыть поиск"
+        >
+          <svg class="h-5 w-5" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12" />
+          </svg>
+        </button>
+      </div>
+      <Search
+        instance="site-search"
+        className="pagefind-search"
+        searchboxOptions={{
+          translations: {
+            placeholder: 'Реактивы, посуда, оборудование…',
+            clear_search: 'Очистить',
+            no_results: 'Ничего не найдено',
+            search_label: 'Поиск',
+          },
+        }}
+      />
+    </div>
+  </div>
+</div>
+
+<style>
+  .search-dialog:not([hidden]) {
+    display: block;
+  }
+</style>
+
+<style is:global>
+  .pagefind-search {
+    --pagefind-ui-scale: 0.95;
+    --pagefind-ui-primary: var(--color-accent);
+    --pagefind-ui-text: #191f28;
+    --pagefind-ui-background: #ffffff;
+    --pagefind-ui-border: #e5e8eb;
+    --pagefind-ui-border-width: 1px;
+    --pagefind-ui-font: 'Inter', system-ui, sans-serif;
+  }
+</style>
+
+<script>
+  function initSearchDialog() {
+    const dialog = document.getElementById('search-dialog');
+    const closeBtn = document.getElementById('search-close');
+    const backdrop = dialog?.querySelector<HTMLButtonElement>('[data-search-backdrop]');
+    const openButtons = document.querySelectorAll<HTMLButtonElement>('[data-search-open]');
+    let lastOpenButton: HTMLButtonElement | null = null;
+
+    if (!dialog || dialog.dataset.ready === 'true') return;
+    dialog.dataset.ready = 'true';
+
+    function openSearch(trigger?: HTMLButtonElement | null) {
+      lastOpenButton = trigger ?? null;
+      dialog.hidden = false;
+      dialog.classList.remove('hidden');
+      document.body.style.overflow = 'hidden';
+      const input = dialog.querySelector<HTMLInputElement>('input[type="search"], input');
+      window.setTimeout(() => input?.focus(), 50);
+    }
+
+    function closeSearch() {
+      dialog.hidden = true;
+      dialog.classList.add('hidden');
+      document.body.style.overflow = '';
+      lastOpenButton?.focus();
+    }
+
+    openButtons.forEach((button) => {
+      button.addEventListener('click', () => openSearch(button));
+    });
+
+    closeBtn?.addEventListener('click', closeSearch);
+    backdrop?.addEventListener('click', closeSearch);
+
+    document.addEventListener('keydown', (event) => {
+      if (event.key === 'Escape' && !dialog.hidden) {
+        closeSearch();
+      }
+      if ((event.metaKey || event.ctrlKey) && event.key === 'k') {
+        event.preventDefault();
+        if (dialog.hidden) openSearch();
+        else closeSearch();
+      }
+    });
+  }
+
+  initSearchDialog();
+  document.addEventListener('astro:page-load', initSearchDialog);
+</script>

@@ -1,0 +1,47 @@
+---
+import { withBase } from '../utils/paths';
+
+interface Props {
+  name: string;
+  logo: string;
+  url?: string;
+}
+
+const { name, logo, url } = Astro.props;
+---
+
+{
+  url ? (
+    <a
+      href={url}
+      target="_blank"
+      rel="noopener noreferrer"
+      class="block h-full no-underline hover:opacity-90"
+      aria-label={`Сайт: ${name}`}
+    >
+      <div class="flex h-full flex-col items-center justify-center rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-6 text-center transition-colors hover:border-[var(--color-accent)]">
+        <img
+          src={withBase(logo)}
+          alt={name}
+          width="140"
+          height="56"
+          class="h-14 max-w-full object-contain"
+          loading="lazy"
+        />
+        <p class="mt-4 text-sm font-medium text-[var(--color-foreground)]">{name}</p>
+      </div>
+    </a>
+  ) : (
+    <div class="flex h-full flex-col items-center justify-center rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-6 text-center">
+      <img
+        src={withBase(logo)}
+        alt={name}
+        width="140"
+        height="56"
+        class="h-14 max-w-full object-contain"
+        loading="lazy"
+      />
+      <p class="mt-4 text-sm font-medium text-[var(--color-foreground)]">{name}</p>
+    </div>
+  )
+}

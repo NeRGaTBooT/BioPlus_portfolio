@@ -1,0 +1,131 @@
+categories:
+  - id: chemical-reagents
+    name: Химические реактивы
+    slug: chemical-reagents
+    description: >-
+      Химические реактивы разных производителей для любых анализов и исследований.
+      На всю продукцию имеются паспорта качества.
+    image: /images/categories/chemical-reagents.png
+    subcategories:
+      - id: acids
+        name: Кислоты
+        slug: acids
+      - id: dyes
+        name: Красители
+        slug: dyes
+      - id: alcohols
+        name: Спирты
+        slug: alcohols
+
+  - id: glassware
+    name: Лабораторная посуда
+    slug: glassware
+    description: >-
+      Лабораторная посуда всех классов точности из стекла, пластика, фарфора и кварца.
+      Мерная посуда внесена в реестр средств измерения Республики Беларусь.
+    image: /images/categories/glassware.png
+    subcategories:
+      - id: hydrometers
+        name: Ареометры
+        slug: hydrometers
+      - id: flasks
+        name: Колбы
+        slug: flasks
+      - id: pipettes
+        name: Пипетки
+        slug: pipettes
+      - id: test-tubes
+        name: Пробирки
+        slug: test-tubes
+      - id: petri-dishes
+        name: Чашки Петри
+        slug: petri-dishes
+
+  - id: culture-media
+    name: Питательные среды и микробиология
+    slug: culture-media
+    description: >-
+      Сухие и жидкие питательные среды разных производителей.
+      Всё необходимое для микробиологических исследований.
+    image: /images/categories/culture-media.png
+    subcategories:
+      - id: gso
+        name: ГСО
+        slug: gso
+      - id: indicator-tubes
+        name: Индикаторные трубки
+        slug: indicator-tubes
+      - id: indicators
+        name: Индикаторы
+        slug: indicators
+      - id: media
+        name: Питательные среды
+        slug: media
+      - id: shimadzu-plates
+        name: Подложки SHIMADZU
+        slug: shimadzu-plates
+
+  - id: equipment
+    name: Лабораторные приборы и оборудование
+    slug: equipment
+    description: >-
+      Современное оборудование для лабораторий.
+      Работаем только с надёжными и проверенными поставщиками.
+    image: /images/categories/equipment.png
+    subcategories:
+      - id: scales
+        name: Весы
+        slug: scales
+      - id: microscopes
+        name: Микроскопы
+        slug: microscopes
+      - id: thermometers
+        name: Термометры
+        slug: thermometers
+      - id: centrifuges
+        name: Центрифуги
+        slug: centrifuges
+      - id: drying-cabinets
+        name: Шкафы сушильные
+        slug: drying-cabinets
+
+  - id: furniture
+    name: Лабораторная мебель
+    slug: furniture
+    description: >-
+      Вся необходимая мебель для лаборатории: вытяжные шкафы, тумбы, столы и многое другое.
+      Являемся официальным представителем ЗАО «Лабораторное Оборудование и Приборы».
+    image: /images/categories/furniture.png
+    subcategories:
+      - id: shelving
+        name: Стеллажи
+        slug: shelving
+      - id: tables
+        name: Столы
+        slug: tables
+      - id: chairs
+        name: Стулья
+        slug: chairs
+      - id: cabinets
+        name: Тумбы
+        slug: cabinets
+      - id: hoods
+        name: Шкафы
+        slug: hoods
+
+  - id: chromatography
+    name: Хроматография
+    slug: chromatography
+    description: >-
+      Всё необходимое для жидкостной и газовой хроматографии.
+    image: /images/categories/chromatography.png
+    subcategories:
+      - id: columns
+        name: Колонки
+        slug: columns
+      - id: solvents
+        name: Растворители
+        slug: solvents
+      - id: standards
+        name: Стандарты
+        slug: standards

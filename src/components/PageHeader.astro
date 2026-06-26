@@ -1,0 +1,23 @@
+---
+interface Props {
+  title: string;
+  description?: string;
+}
+
+const { title, description } = Astro.props;
+---
+
+<section class="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
+  <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+    <h1 class="text-2xl font-semibold tracking-tight text-[var(--color-foreground)] sm:text-3xl">
+      {title}
+    </h1>
+    {
+      description && (
+        <p class="mt-3 max-w-2xl text-base leading-relaxed text-[var(--color-muted)]">
+          {description}
+        </p>
+      )
+    }
+  </div>
+</section>

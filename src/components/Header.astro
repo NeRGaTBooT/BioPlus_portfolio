@@ -1,0 +1,233 @@
+---
+import type { SiteConfig } from '../types/site';
+import { withBase } from '../utils/paths';
+import HeaderPhones from './HeaderPhones.astro';
+
+interface Props {
+  site: SiteConfig;
+}
+
+const { site } = Astro.props;
+---
+
+<header class="sticky top-0 z-50 border-b border-[var(--color-border)] bg-white/95 backdrop-blur-sm">
+  <div class="hidden border-b border-[var(--color-border)] bg-[var(--color-surface)] lg:block">
+    <div class="mx-auto flex max-w-6xl justify-end px-4 py-2 sm:px-6 lg:px-8">
+      <HeaderPhones site={site} />
+    </div>
+  </div>
+
+  <div class="mx-auto flex max-w-6xl items-center gap-3 px-4 py-3 sm:px-6 lg:gap-4 lg:px-8">
+    <a
+      href={withBase('/')}
+      class="flex shrink-0 items-center gap-2.5 no-underline hover:no-underline"
+      aria-label={`${site.name} — на главную`}
+    >
+      <img
+        src={withBase(site.logo)}
+        alt=""
+        width="36"
+        height="36"
+        class="h-9 w-9 shrink-0 object-contain"
+        loading="eager"
+        decoding="async"
+      />
+      <span class="hidden sm:block">
+        <span class="block whitespace-nowrap text-sm font-semibold leading-tight text-[var(--color-foreground)]">
+          {site.name}
+        </span>
+        <span class="hidden whitespace-nowrap text-xs leading-tight text-[var(--color-muted)] xl:block">
+          {site.tagline}
+        </span>
+      </span>
+    </a>
+
+    <div class="hidden min-w-0 flex-1 items-center justify-end gap-1 lg:flex xl:gap-2">
+      <nav class="flex shrink-0 items-center" aria-label="Основная навигация">
+        {
+          site.navigation.main.map((item) => {
+            const linkClass =
+              'inline-flex shrink-0 items-center gap-1 whitespace-nowrap rounded-[var(--radius-sm)] px-2 py-2 text-sm font-medium text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)] xl:px-3';
+
+            if (item.megaMenu) {
+              return (
+                <div class="group relative shrink-0">
+                  <a href={withBase(item.href)} class={linkClass}>
+                    {item.label}
+                    <svg class="h-4 w-4 shrink-0 text-[var(--color-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                      <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                    </svg>
+                  </a>
+                <div class="invisible absolute left-0 top-full z-50 w-72 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-2 shadow-sm">
+                    <p class="px-3 py-2 text-xs font-medium uppercase tracking-wide text-[var(--color-muted)]">
+                      Категории продукции
+                    </p>
+                    <ul class="space-y-0.5">
+                      {site.navigation.products.map((product) => (
+                        <li>
+                          <a
+                            href={withBase(product.href)}
+                            class="block rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+                          >
+                            {product.label}
+                          </a>
+                        </li>
+                      ))}
+                    </ul>
+                    <div class="mt-1 border-t border-[var(--color-border)] pt-1">
+                      <a
+                        href={withBase('/products')}
+                        class="block rounded-[var(--radius-sm)] px-3 py-2 text-sm font-medium text-[var(--color-accent)] no-underline hover:bg-[var(--color-accent-muted)]"
+                      >
+                        Все категории →
+                      </a>
+                    </div>
+                  </div>
+                </div>
+              </div>
+            );
+          }
+
+          if (item.dropdown) {
+            return (
+              <div class="group relative shrink-0">
+                <a href={withBase(item.href)} class={linkClass}>
+                  {item.label}
+                  <svg class="h-4 w-4 shrink-0 text-[var(--color-muted)]" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7" />
+                  </svg>
+                </a>
+                <div class="invisible absolute left-0 top-full z-50 w-56 pt-2 opacity-0 transition-all duration-150 group-hover:visible group-hover:opacity-100 group-focus-within:visible group-focus-within:opacity-100">
+                  <ul class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-2 shadow-sm">
+                    {site.navigation.about.map((link) => (
+                      <li>
+                        <a
+                          href={withBase(link.href)}
+                          class="block rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+            );
+          }
+
+          return (
+            <a href={withBase(item.href)} class={linkClass}>
+              {item.label}
+            </a>
+          );
+        })
+      }
+      </nav>
+
+      <div class="ml-1 flex shrink-0 items-center gap-1.5 border-l border-[var(--color-border)] pl-1.5 xl:ml-2 xl:gap-2 xl:pl-2">
+        <button
+          type="button"
+          data-search-open
+          class="inline-flex shrink-0 items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border)] p-2 text-[var(--color-muted)] hover:border-[var(--color-accent)] hover:text-[var(--color-foreground)]"
+          aria-label="Поиск"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+        </button>
+        <a
+          href={withBase('/contacts')}
+          class="inline-flex shrink-0 items-center whitespace-nowrap rounded-[var(--radius-md)] bg-[var(--color-accent)] px-3 py-2 text-sm font-medium text-white no-underline hover:bg-[var(--color-accent-hover)] xl:px-4"
+        >
+          Связаться
+        </a>
+      </div>
+    </div>
+
+    <button
+      type="button"
+      id="mobile-menu-toggle"
+      class="ml-auto inline-flex items-center justify-center rounded-[var(--radius-md)] p-2 text-[var(--color-foreground)] hover:bg-[var(--color-surface)] lg:hidden"
+      aria-expanded="false"
+      aria-controls="mobile-menu"
+      aria-label="Открыть меню"
+    >
+      <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16" />
+      </svg>
+    </button>
+  </div>
+
+  <div id="mobile-menu" class="hidden border-t border-[var(--color-border)] bg-white lg:hidden" aria-hidden="true">
+    <nav class="mx-auto max-w-6xl space-y-1 px-4 py-4 sm:px-6" aria-label="Мобильная навигация">
+      {
+        site.navigation.main.map((item) => (
+          <a
+            href={withBase(item.href)}
+            class="block rounded-[var(--radius-sm)] px-3 py-2.5 text-sm font-medium text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+          >
+            {item.label}
+          </a>
+        ))
+      }
+      <div class="my-2 border-t border-[var(--color-border)] pt-2">
+        <p class="px-3 py-1 text-xs font-medium uppercase tracking-wide text-[var(--color-muted)]">О нас</p>
+        {
+          site.navigation.about.map((link) => (
+            <a
+              href={withBase(link.href)}
+              class="block rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+      <div class="my-2 border-t border-[var(--color-border)] pt-2">
+        <p class="px-3 py-1 text-xs font-medium uppercase tracking-wide text-[var(--color-muted)]">Продукция</p>
+        {
+          site.navigation.products.map((link) => (
+            <a
+              href={withBase(link.href)}
+              class="block rounded-[var(--radius-sm)] px-3 py-2 text-sm text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+            >
+              {link.label}
+            </a>
+          ))
+        }
+      </div>
+      <div class="mt-3 space-y-4 border-t border-[var(--color-border)] px-3 pt-4">
+        <HeaderPhones site={site} compact />
+        <button
+          type="button"
+          data-search-open
+          class="inline-flex items-center justify-center gap-2 rounded-[var(--radius-md)] border border-[var(--color-border)] px-4 py-2.5 text-sm font-medium text-[var(--color-foreground)]"
+        >
+          <svg class="h-4 w-4" fill="none" viewBox="0 0 24 24" stroke="currentColor" aria-hidden="true">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
+          </svg>
+          Поиск по каталогу
+        </button>
+        <a
+          href={withBase('/contacts')}
+          class="inline-flex justify-center rounded-[var(--radius-md)] bg-[var(--color-accent)] px-4 py-2.5 text-sm font-medium text-white no-underline"
+        >
+          Связаться
+        </a>
+      </div>
+    </nav>
+  </div>
+</header>
+
+<script>
+  const toggle = document.getElementById('mobile-menu-toggle');
+  const menu = document.getElementById('mobile-menu');
+
+  toggle?.addEventListener('click', () => {
+    const isOpen = menu?.classList.toggle('hidden') === false;
+    toggle.setAttribute('aria-expanded', String(isOpen));
+    toggle.setAttribute('aria-label', isOpen ? 'Закрыть меню' : 'Открыть меню');
+    menu?.setAttribute('aria-hidden', String(!isOpen));
+  });
+</script>

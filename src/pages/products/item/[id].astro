@@ -1,0 +1,149 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import { getCategoryById } from '../../../utils/categories';
+import { getAllProductIds, getProductById } from '../../../utils/products';
+import { withBase } from '../../../utils/paths';
+
+export function getStaticPaths() {
+  return getAllProductIds().map((id) => ({ params: { id } }));
+}
+
+const { id } = Astro.params;
+const product = getProductById(id!);
+
+if (!product) {
+  return Astro.redirect(withBase('/products'));
+}
+
+const category = getCategoryById(product.category);
+const subcategory = category?.subcategories.find((item) => item.id === product.subcategory);
+
+const productJsonLd = {
+  '@context': 'https://schema.org',
+  '@type': 'Product',
+  name: product.name,
+  description: product.description ?? `${product.name} — каталог ООО «БиоПлюс»`,
+  ...(product.manufacturer
+    ? { brand: { '@type': 'Brand', name: product.manufacturer } }
+    : {}),
+  offers: {
+    '@type': 'Offer',
+    availability: product.inStock
+      ? 'https://schema.org/InStock'
+      : 'https://schema.org/PreOrder',
+    seller: { '@type': 'Organization', name: 'ООО «БиоПлюс»' },
+  },
+};
+---
+
+<BaseLayout
+  title={product.name}
+  description={product.description ?? `${product.name} — каталог ООО «БиоПлюс»`}
+>
+  <section class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8" data-pagefind-body>
+    <script type="application/ld+json" set:html={JSON.stringify(productJsonLd)} />
+    <Breadcrumbs
+      items={[
+        { label: 'Главная', href: '/' },
+        { label: 'Продукция', href: '/products' },
+        ...(category
+          ? [{ label: category.name, href: `/products/${category.slug}` }]
+          : []),
+        ...(category && subcategory
+          ? [
+              {
+                label: subcategory.name,
+                href: `/products/${category.slug}/${subcategory.slug}`,
+              },
+            ]
+          : []),
+        { label: product.name },
+      ]}
+    />
+
+    <div class="grid gap-10 lg:grid-cols-3">
+      <div class="lg:col-span-2">
+        <div class="flex flex-wrap items-start gap-3">
+          <h1 class="text-2xl font-semibold tracking-tight text-[var(--color-foreground)] sm:text-3xl">
+            {product.name}
+          </h1>
+          {
+            product.inStock ? (
+              <span class="rounded-full bg-[var(--color-accent-muted)] px-3 py-1 text-sm font-medium text-[var(--color-accent)]">
+                В наличии
+              </span>
+            ) : (
+              <span class="rounded-full bg-[var(--color-surface)] px-3 py-1 text-sm font-medium text-[var(--color-muted)]">
+                Под заказ
+              </span>
+            )
+          }
+        </div>
+
+        <dl class="mt-8 space-y-4 text-sm">
+          {
+            category && (
+              <div>
+                <dt class="text-[var(--color-muted)]">Категория</dt>
+                <dd class="mt-1 font-medium text-[var(--color-foreground)]">
+                  <a href={withBase(`/products/${category.slug}`)}>{category.name}</a>
+                </dd>
+              </div>
+            )
+          }
+          {
+            subcategory && category && (
+              <div>
+                <dt class="text-[var(--color-muted)]">Подкатегория</dt>
+                <dd class="mt-1 font-medium text-[var(--color-foreground)]">
+                  <a href={withBase(`/products/${category.slug}/${subcategory.slug}`)}>
+                    {subcategory.name}
+                  </a>
+                </dd>
+              </div>
+            )
+          }
+          {
+            product.manufacturer && (
+              <div>
+                <dt class="text-[var(--color-muted)]">Производитель</dt>
+                <dd class="mt-1 font-medium text-[var(--color-foreground)]">
+                  {product.manufacturer}
+                </dd>
+              </div>
+            )
+          }
+        </dl>
+
+        {
+          product.description && (
+            <div class="mt-8">
+              <h2 class="text-base font-semibold text-[var(--color-foreground)]">Описание</h2>
+              <p class="mt-3 leading-relaxed text-[var(--color-muted)]">{product.description}</p>
+            </div>
+          )
+        }
+      </div>
+
+      <aside class="h-fit rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-[var(--color-surface)] p-6">
+        <h2 class="text-base font-semibold text-[var(--color-foreground)]">Заказать</h2>
+        <p class="mt-2 text-sm leading-relaxed text-[var(--color-muted)]">
+          Цена по запросу. Отправьте заявку — менеджер свяжется с вами в рабочее время.
+        </p>
+        <a
+          href={withBase(`/contacts?product=${product.id}`)}
+          class="mt-6 inline-flex w-full items-center justify-center rounded-[var(--radius-md)] bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white no-underline hover:bg-[var(--color-accent-hover)]"
+        >
+          Запросить цену
+        </a>
+        <a
+          href={withBase('/contacts')}
+          class="mt-3 inline-flex w-full items-center justify-center rounded-[var(--radius-md)] border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+        >
+          Связаться с отделом продаж
+        </a>
+      </aside>
+    </div>
+  </section>
+</BaseLayout>

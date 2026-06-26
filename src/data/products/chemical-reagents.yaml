@@ -1,0 +1,66 @@
+- id: naoh-1kg
+  name: "Натрий гидроокись, ч.д.а."
+  category: chemical-reagents
+  subcategory: acids
+  manufacturer: PanReac
+  inStock: true
+  popular: true
+  description: "Реактив чистый для анализа, фасовка 1 кг."
+
+- id: hcl-1l
+  name: "Кислота соляная, ч.д.а., 36–38%"
+  category: chemical-reagents
+  subcategory: acids
+  manufacturer: ХимМед
+  inStock: true
+  description: "Соляная кислота для лабораторных анализов, 1 л."
+
+- id: h2so4-1l
+  name: "Кислота серная, ч.д.а."
+  category: chemical-reagents
+  subcategory: acids
+  manufacturer: Экохим
+  inStock: true
+  description: "Серная кислота для аналитических работ, 1 л."
+
+- id: methylene-blue
+  name: "Метиленовый синь, ч.д.а."
+  category: chemical-reagents
+  subcategory: dyes
+  manufacturer: Вектон
+  inStock: true
+  description: "Краситель для микробиологических окрасок, 25 г."
+
+- id: phenolphthalein
+  name: "Фенолфталеин, инд."
+  category: chemical-reagents
+  subcategory: dyes
+  manufacturer: PanReac
+  inStock: false
+  description: "Индикатор для кислотно-щелочного титрования, 25 г."
+
+- id: methanol-1l
+  name: "Метанол, ч.д.а."
+  category: chemical-reagents
+  subcategory: alcohols
+  manufacturer: Carlo Erba
+  inStock: true
+  popular: true
+  description: "Метиловый спирт для хроматографии и анализов, 1 л."
+
+- id: ethanol-96
+  name: "Этанол 96%, ч.д.а."
+  category: chemical-reagents
+  subcategory: alcohols
+  manufacturer: Эколан
+  inStock: true
+  description: "Этиловый спирт для дезинфекции и анализов, 1 л."
+
+- id: diethyl-ether
+  name: "Диэтиловый эфир, ч.д.а."
+  category: chemical-reagents
+  subcategory: alcohols
+  manufacturer: PanReac
+  inStock: true
+  popular: true
+  description: "Эфир для экстракции и аналитики, 1 л."

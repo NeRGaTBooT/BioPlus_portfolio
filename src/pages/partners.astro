@@ -1,0 +1,52 @@
+---
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import PageHeader from '../components/PageHeader.astro';
+
+import LogoCard from '../components/LogoCard.astro';
+
+import { getPartners } from '../utils/data';
+
+
+
+const partners = getPartners();
+
+---
+
+
+
+<BaseLayout
+
+  title="Партнёры"
+
+  description="Производители и поставщики, с которыми сотрудничает ООО «БиоПлюс»."
+
+>
+
+  <PageHeader
+
+    title="Партнёры"
+
+    description="Мы работаем с ведущими производителями лабораторной продукции и являемся официальными дистрибьюторами ряда брендов."
+
+  />
+
+
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+
+    <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4">
+
+      {partners.map((partner) => (
+
+        <LogoCard name={partner.name} logo={partner.logo} url={partner.url} />
+
+      ))}
+
+    </div>
+
+  </section>
+
+</BaseLayout>
+

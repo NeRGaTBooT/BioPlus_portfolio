@@ -1,0 +1,72 @@
+---
+import BaseLayout from '../../../layouts/BaseLayout.astro';
+import Breadcrumbs from '../../../components/Breadcrumbs.astro';
+import InStockFilter from '../../../components/InStockFilter.astro';
+import ProductCard from '../../../components/ProductCard.astro';
+import SubcategoryNav from '../../../components/SubcategoryNav.astro';
+import { getAllSubcategoryPaths, getSubcategory } from '../../../utils/categories';
+import { countInStock, getProductsBySubcategory } from '../../../utils/products';
+import { withBase } from '../../../utils/paths';
+
+export function getStaticPaths() {
+  return getAllSubcategoryPaths().map(({ category, subcategory }) => ({
+    params: { category, subcategory },
+  }));
+}
+
+const { category: categorySlug, subcategory: subcategorySlug } = Astro.params;
+const result = getSubcategory(categorySlug!, subcategorySlug!);
+
+if (!result) {
+  return Astro.redirect(withBase('/products'));
+}
+
+const { category, subcategory } = result;
+const products = getProductsBySubcategory(category.id, subcategory.id);
+const inStockCount = countInStock(products);
+---
+
+<BaseLayout
+  title={`${subcategory.name} — ${category.name}`}
+  description={`${subcategory.name} в категории «${category.name}». ${products.length} позиций в каталоге.`}
+>
+  <section class="border-b border-[var(--color-border)] bg-[var(--color-surface)]">
+    <div class="mx-auto max-w-6xl px-4 py-10 sm:px-6 sm:py-14 lg:px-8">
+      <Breadcrumbs
+        items={[
+          { label: 'Главная', href: '/' },
+          { label: 'Продукция', href: '/products' },
+          { label: category.name, href: `/products/${category.slug}` },
+          { label: subcategory.name },
+        ]}
+      />
+
+      <h1 class="text-2xl font-semibold tracking-tight text-[var(--color-foreground)] sm:text-3xl">
+        {subcategory.name}
+      </h1>
+      <p class="mt-2 text-sm text-[var(--color-muted)]">{category.name}</p>
+    </div>
+  </section>
+
+  <section class="mx-auto max-w-6xl px-4 py-8 sm:px-6 lg:px-8" data-pagefind-body>
+    <SubcategoryNav category={category} activeSubcategorySlug={subcategory.slug} />
+
+    <div class="mt-6">
+      <InStockFilter total={products.length} inStock={inStockCount} />
+    </div>
+
+    {
+      products.length > 0 ? (
+        <div class="mt-6 grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
+          {products.map((product) => (
+            <ProductCard product={product} />
+          ))}
+        </div>
+      ) : (
+        <p class="mt-10 text-center text-sm text-[var(--color-muted)]">
+          В этой подкатегории пока нет товаров.
+        </p>
+      )
+    }
+  </section>
+</BaseLayout>

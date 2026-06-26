@@ -1,0 +1,47 @@
+- id: agar-nutrient
+  name: "Агар питательный, сухой"
+  category: culture-media
+  subcategory: media
+  manufacturer: "ФБУН ГНЦ ПМБ"
+  inStock: true
+  description: "Сухая питательная среда для культивирования микроорганизмов, 500 г."
+
+- id: sabouraud
+  name: "Среда Сabouraud, сухая"
+  category: culture-media
+  subcategory: media
+  manufacturer: "ФБУН ГНЦ ПМБ"
+  inStock: true
+  description: "Среда для грибов и дрожжей, 250 г."
+
+- id: gso-water
+  name: "ГСО состава воды питьевой"
+  category: culture-media
+  subcategory: gso
+  manufacturer: "НПЦ Референс"
+  inStock: true
+  description: "Государственный стандартный образец, набор из 5 компонентов."
+
+- id: indicator-tubes-co
+  name: "Индикаторные трубки CO"
+  category: culture-media
+  subcategory: indicator-tubes
+  manufacturer: Gastec
+  inStock: true
+  description: "Трубки для определения угарного газа, уп. 10 шт."
+
+- id: ph-indicator-universal
+  name: "Индикатор универсальный, полоски"
+  category: culture-media
+  subcategory: indicators
+  manufacturer: Merck
+  inStock: true
+  description: "Индикаторные полоски pH 1–14, уп. 100 шт."
+
+- id: shimadzu-plate-96
+  name: "Подложка SHIMADZU 96-луночная"
+  category: culture-media
+  subcategory: shimadzu-plates
+  manufacturer: SHIMADZU
+  inStock: false
+  description: "Микропланшет для анализатора, уп. 50 шт."

@@ -1,0 +1,55 @@
+- id: scale-analytical
+  name: "Весы аналитические, 220 г × 0,1 мг"
+  category: equipment
+  subcategory: scales
+  manufacturer: A&D
+  inStock: true
+  description: "Аналитические весы с внутренней калибровкой."
+
+- id: microscope-biolux
+  name: "Микроскоп биологический Микромед"
+  category: equipment
+  subcategory: microscopes
+  manufacturer: "АО «ЛОИП»"
+  inStock: true
+  description: "Микроскоп с увеличением 40–1000×, LED-подсветка."
+
+- id: thermometer-mercury
+  name: "Термометр лабораторный −10…+150 °C"
+  category: equipment
+  subcategory: thermometers
+  manufacturer: "ПАО «Химлаборприбор»"
+  inStock: true
+  description: "Ртутный термометр без поверки, класс точности 1."
+
+- id: centrifuge-clinical
+  name: "Центрифуга медицинская ОПн-8"
+  category: equipment
+  subcategory: centrifuges
+  manufacturer: "АО «ЛОИП»"
+  inStock: false
+  description: "Настольная центрифуга, 4000 об/мин, 8 пробирок."
+
+- id: drying-cabinet-45
+  name: "Шкаф сушильный СНОЛ, 45 л"
+  category: equipment
+  subcategory: drying-cabinets
+  manufacturer: "АО «ЛОИП»"
+  inStock: true
+  description: "Электрический сушильный шкаф, t до 300 °C."
+
+- id: scale-precision
+  name: "Весы лабораторные, 6000 г × 0,01 г"
+  category: equipment
+  subcategory: scales
+  manufacturer: Vibra
+  inStock: true
+  description: "Прецизионные весы для лаборатории."
+
+- id: microscope-stereo
+  name: "Микроскоп стереоскопический"
+  category: equipment
+  subcategory: microscopes
+  manufacturer: Bresser
+  inStock: true
+  description: "Стереомикроскоп для контроля качества, 20–40×."

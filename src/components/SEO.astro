@@ -1,0 +1,36 @@
+---
+import { withBase } from '../utils/paths';
+
+interface Props {
+  title: string;
+  description: string;
+  image?: string;
+  type?: 'website' | 'article';
+}
+
+const { title, description, image, type = 'website' } = Astro.props;
+
+const canonicalURL = new URL(Astro.url.pathname, Astro.site);
+const ogImage = image
+  ? new URL(withBase(image), Astro.site)
+  : new URL(withBase('/images/og-image.svg'), Astro.site);
+---
+
+<meta name="description" content={description} />
+<link rel="canonical" href={canonicalURL} />
+
+<meta property="og:type" content={type} />
+<meta property="og:url" content={canonicalURL} />
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:image" content={ogImage} />
+<meta property="og:locale" content="ru_RU" />
+<meta property="og:site_name" content="БиоПлюс" />
+
+<meta name="twitter:card" content="summary_large_image" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />
+<meta name="twitter:image" content={ogImage} />
+
+<meta name="robots" content="index, follow" />
+<meta name="theme-color" content="#161d89" />

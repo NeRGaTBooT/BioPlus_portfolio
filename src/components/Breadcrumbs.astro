@@ -1,0 +1,40 @@
+---
+import { withBase } from '../utils/paths';
+
+export interface BreadcrumbItem {
+  label: string;
+  href?: string;
+}
+
+interface Props {
+  items: BreadcrumbItem[];
+}
+
+const { items } = Astro.props;
+---
+
+<nav aria-label="Хлебные крошки" class="mb-6">
+  <ol class="flex flex-wrap items-center gap-1.5 text-sm text-[var(--color-muted)]">
+    {
+      items.map((item, index) => (
+        <li class="flex items-center gap-1.5">
+          {index > 0 && <span aria-hidden="true">/</span>}
+          {
+            item.href ? (
+              <a
+                href={withBase(item.href)}
+                class="text-[var(--color-muted)] no-underline hover:text-[var(--color-accent)]"
+              >
+                {item.label}
+              </a>
+            ) : (
+              <span class="font-medium text-[var(--color-foreground)]" aria-current="page">
+                {item.label}
+              </span>
+            )
+          }
+        </li>
+      ))
+    }
+  </ol>
+</nav>

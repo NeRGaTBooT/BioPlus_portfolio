@@ -1,0 +1,91 @@
+name: БиоПлюс
+logo: /images/logo.png
+tagline: Комплексное обеспечение лабораторий
+description: >-
+  ООО «БиоПлюс» — один из основных поставщиков химических реактивов,
+  лабораторной посуды, питательных сред, оборудования и мебели для лабораторий
+  по всей Беларуси.
+
+contacts:
+  email: sale.bioplus.by@gmail.com
+  mobile: "713-30-30"
+  mobileNote: "A1, МТС, Life"
+
+offices:
+  - id: minsk
+    name: Офис в Минске
+    address: "ул. Я. Коласа, д. 37, к. 31"
+    city: "220013, г. Минск"
+    phones:
+      - label: Многоканальный
+        value: "+375 (17) 270-270-0"
+    schedule: "Пн. – Пт.: с 8:30 до 17:30"
+    mapEmbed: "https://yandex.ru/map-widget/v1/?um=constructor%3Aplaceholder&amp;source=constructor"
+
+  - id: gomel
+    name: Офис и склад в Гомеле
+    address: "ул. Шилова, д. 2"
+    city: "246007, г. Гомель"
+    phones:
+      - label: Многоканальный
+        value: "+375 (232) 342-000"
+    schedule: "Пн. – Пт.: с 8:00 до 17:00"
+    mapEmbed: "https://yandex.ru/map-widget/v1/?um=constructor%3Aplaceholder&amp;source=constructor"
+
+requisites:
+  legalName: 'ООО «БиоПлюс»'
+  legalAddress: "220040, г. Минск, ул. Тимирязева, д. 67, пом. 503"
+  postalAddress: "246007, г. Гомель, ул. Шилова, д. 2"
+  unp: "193751159"
+  iban: "BY93PJCB30124088381000000933"
+  bank: 'ОАО "Приорбанк"'
+  bic: "PJCBBY2X"
+
+stats:
+  - value: "25+"
+    label: лет на рынке
+  - value: "3000+"
+    label: клиентов в Беларуси
+  - value: "4100+"
+    label: наименований на складе
+
+navigation:
+  main:
+    - label: Главная
+      href: /
+    - label: Продукция
+      href: /products
+      megaMenu: true
+    - label: Условия работы
+      href: /terms
+    - label: О нас
+      href: /about
+      dropdown: true
+    - label: Контакты
+      href: /contacts
+
+  about:
+    - label: О компании
+      href: /about
+    - label: Наша команда
+      href: /team
+    - label: Партнёры
+      href: /partners
+    - label: Основные клиенты
+      href: /clients
+    - label: Каталоги
+      href: /catalogs
+
+  products:
+    - label: Химические реактивы
+      href: /products/chemical-reagents
+    - label: Лабораторная посуда
+      href: /products/glassware
+    - label: Питательные среды и микробиология
+      href: /products/culture-media
+    - label: Лабораторные приборы и оборудование
+      href: /products/equipment
+    - label: Лабораторная мебель
+      href: /products/furniture
+    - label: Хроматография
+      href: /products/chromatography

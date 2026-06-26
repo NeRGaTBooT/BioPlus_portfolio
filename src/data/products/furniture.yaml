@@ -1,0 +1,47 @@
+- id: lab-table-1500
+  name: "Стол лабораторный 1500×750 мм"
+  category: furniture
+  subcategory: tables
+  manufacturer: "ЗАО «ЛОП»"
+  inStock: true
+  description: "Стол с металлическим каркасом и керамической столешницей."
+
+- id: lab-chair
+  name: "Стул лабораторный с подлокотниками"
+  category: furniture
+  subcategory: chairs
+  manufacturer: "ЗАО «ЛОП»"
+  inStock: true
+  description: "Стул с регулировкой высоты, устойчивый к химическим реагентам."
+
+- id: cabinet-under-sink
+  name: "Тумба под мойку 600 мм"
+  category: furniture
+  subcategory: cabinets
+  manufacturer: "ЗАО «ЛОП»"
+  inStock: true
+  description: "Тумба из ЛДСП с вырезом под мойку."
+
+- id: shelving-1800
+  name: "Стеллаж лабораторный 1800×900 мм"
+  category: furniture
+  subcategory: shelving
+  manufacturer: "ЗАО «ЛОП»"
+  inStock: false
+  description: "Металлический стеллаж с 5 полками, нагрузка до 150 кг."
+
+- id: fume-hood-1200
+  name: "Шкаф вытяжной 1200 мм"
+  category: furniture
+  subcategory: hoods
+  manufacturer: "ЗАО «ЛОП»"
+  inStock: true
+  description: "Вытяжной шкаф с внутренней подсветкой и раковиной."
+
+- id: storage-cabinet
+  name: "Шкаф для хранения реактивов"
+  category: furniture
+  subcategory: hoods
+  manufacturer: "ЗАО «ЛОП»"
+  inStock: true
+  description: "Шкаф с вентиляцией для хранения химических реактивов."

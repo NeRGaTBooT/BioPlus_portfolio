@@ -1,0 +1,268 @@
+---
+
+
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+import CategoryGrid from '../components/CategoryGrid.astro';
+
+import ProductCard from '../components/ProductCard.astro';
+
+import LogoSlider from '../components/LogoSlider.astro';
+
+import { loadYaml } from '../utils/loadYaml';
+
+import { getCategories } from '../utils/categories';
+
+import { getPopularProducts } from '../utils/products';
+
+import { getPartners, getClients } from '../utils/data';
+
+import { withBase } from '../utils/paths';
+
+import type { SiteConfig } from '../types/site';
+
+
+
+const site = loadYaml<SiteConfig>('site.yaml');
+
+const categories = getCategories();
+
+const popularProducts = getPopularProducts(4);
+
+const partners = getPartners();
+
+const clients = getClients();
+
+---
+
+
+
+<BaseLayout>
+
+  <section
+    class="relative isolate flex min-h-[22rem] items-center overflow-hidden border-b border-[var(--color-border)] bg-[var(--color-surface)] bg-cover bg-center bg-no-repeat sm:min-h-[26rem] lg:min-h-[28rem] lg:bg-right"
+    style={`background-image: url('${withBase('/images/hero-lab.png')}')`}
+  >
+    <div class="mx-auto w-full max-w-6xl px-4 py-12 sm:px-6 sm:py-16 lg:px-8">
+      <div class="w-full rounded-[var(--radius-lg)] bg-white/85 px-6 py-8 backdrop-blur-[2px] sm:px-8 sm:py-10">
+        <div class="max-w-xl">
+          <h1 class="text-3xl font-semibold leading-tight tracking-tight text-[var(--color-foreground)] sm:text-4xl">
+            {site.tagline}
+          </h1>
+
+          <p class="mt-4 text-base leading-relaxed text-[var(--color-muted)]">
+            {site.description}
+          </p>
+
+          <div class="mt-8 flex flex-wrap gap-3">
+            <a
+              href={withBase('/products')}
+              class="inline-flex items-center rounded-[var(--radius-md)] bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white no-underline hover:bg-[var(--color-accent-hover)]"
+            >
+              Каталог продукции
+            </a>
+
+            <a
+              href={withBase('/contacts')}
+              class="inline-flex items-center rounded-[var(--radius-md)] border border-[var(--color-border)] bg-white px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+            >
+              Связаться с нами
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+
+    <dl class="grid gap-6 sm:grid-cols-3">
+
+      {
+
+        site.stats.map((stat) => (
+
+          <div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white p-6">
+
+            <dt class="text-sm text-[var(--color-muted)]">{stat.label}</dt>
+
+            <dd class="mt-1 text-3xl font-semibold tracking-tight text-[var(--color-foreground)]">
+
+              {stat.value}
+
+            </dd>
+
+          </div>
+
+        ))
+
+      }
+
+    </dl>
+
+  </section>
+
+
+
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+
+    <div class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+
+      <div class="mb-8">
+
+        <h2 class="text-lg font-semibold text-[var(--color-foreground)]">Категории продукции</h2>
+
+        <p class="mt-2 text-sm text-[var(--color-muted)]">
+
+          Полный ассортимент для оснащения и снабжения лабораторий
+
+        </p>
+
+      </div>
+
+      <CategoryGrid categories={categories} />
+
+    </div>
+
+  </section>
+
+
+
+  {
+
+    popularProducts.length > 0 && (
+
+      <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+
+        <div class="mb-8 flex items-end justify-between gap-4">
+
+          <div>
+
+            <h2 class="text-lg font-semibold text-[var(--color-foreground)]">Популярные товары</h2>
+
+            <p class="mt-2 text-sm text-[var(--color-muted)]">
+
+              Часто запрашиваемые позиции из нашего каталога
+
+            </p>
+
+          </div>
+
+          <a
+
+            href={withBase('/products')}
+
+            class="shrink-0 text-sm font-medium text-[var(--color-accent)] no-underline hover:text-[var(--color-accent-hover)]"
+
+          >
+
+            Весь каталог →
+
+          </a>
+
+        </div>
+
+        <div class="grid gap-4 sm:grid-cols-2 lg:grid-cols-4">
+
+          {popularProducts.map((product) => (
+
+            <ProductCard product={product} />
+
+          ))}
+
+        </div>
+
+      </section>
+
+    )
+
+  }
+
+
+
+  <section class="border-t border-[var(--color-border)] bg-[var(--color-surface)]">
+
+    <div class="mx-auto max-w-6xl space-y-12 px-4 py-12 sm:px-6 lg:px-8">
+
+      <LogoSlider
+
+        items={partners}
+
+        title="Партнёры"
+
+        linkHref="/partners"
+
+        linkLabel="Все партнёры"
+
+      />
+
+      <LogoSlider
+
+        items={clients}
+
+        title="Наши клиенты"
+
+        linkHref="/clients"
+
+        linkLabel="Все клиенты"
+
+      />
+
+    </div>
+
+  </section>
+
+
+
+  <section class="mx-auto max-w-6xl px-4 py-12 sm:px-6 lg:px-8">
+
+    <div class="rounded-[var(--radius-lg)] border border-[var(--color-border)] bg-white px-6 py-10 text-center sm:px-10">
+
+      <h2 class="text-xl font-semibold text-[var(--color-foreground)]">
+
+        Нужна консультация по подбору продукции?
+
+      </h2>
+
+      <p class="mx-auto mt-3 max-w-lg text-sm leading-relaxed text-[var(--color-muted)]">
+
+        Свяжитесь с отделом продаж — поможем подобрать реактивы, посуду или оборудование под ваши задачи.
+
+      </p>
+
+      <div class="mt-6 flex flex-wrap justify-center gap-3">
+
+        <a
+
+          href={withBase('/contacts')}
+
+          class="inline-flex items-center rounded-[var(--radius-md)] bg-[var(--color-accent)] px-5 py-2.5 text-sm font-medium text-white no-underline hover:bg-[var(--color-accent-hover)]"
+
+        >
+
+          Оставить заявку
+
+        </a>
+
+        <a
+
+          href={`tel:${site.contacts.mobile}`}
+
+          class="inline-flex items-center rounded-[var(--radius-md)] border border-[var(--color-border)] px-5 py-2.5 text-sm font-medium text-[var(--color-foreground)] no-underline hover:bg-[var(--color-surface)]"
+
+        >
+
+          {site.contacts.mobile}
+
+        </a>
+
+      </div>
+
+    </div>
+
+  </section>
+
+</BaseLayout>
+
